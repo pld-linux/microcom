@@ -1,4 +1,5 @@
 Summary:	minicom-like serial terminal emulator
+Summary(pl):	Podobny do minicoma emulator terminala szeregowego
 Name:		microcom
 Version:	1.02
 Release:	1
@@ -14,6 +15,12 @@ microcom is a minicom-like serial terminal emulator with scripting
 support. The requirement for this program was to be small enough
 to fit on a floppy-based Linux distribution - such as the one
 from Linux Router Project.
+
+%description -l pl
+microcom jest podobnym do minicoma emulatorem terminala szeregowego
+z obs³ug± skryptów. Program ten ma tak ma³e wymagania, ¿e nadaje siê
+do stosowania w dyskietkowych dystrybucjach Linuksa - takich jak
+wywodz±ca siê z Linux Router Project.
 
 %prep
 %setup -q -c
