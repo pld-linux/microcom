@@ -1,5 +1,5 @@
 Summary:	minicom-like serial terminal emulator
-Summary(pl.UTF-8):   Podobny do minicoma emulator terminala szeregowego
+Summary(pl.UTF-8):	Podobny do minicoma emulator terminala szeregowego
 Name:		microcom
 Version:	1.02
 Release:	1
