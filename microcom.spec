@@ -2,7 +2,7 @@ Summary:	minicom-like serial terminal emulator
 Summary(pl.UTF-8):	Podobny do minicoma emulator terminala szeregowego
 Name:		microcom
 Version:	1.02
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://microcom.port5.com/m102.tar.gz
