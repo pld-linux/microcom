@@ -2,12 +2,15 @@ Summary:	minicom-like serial terminal emulator
 Summary(pl.UTF-8):	Podobny do minicoma emulator terminala szeregowego
 Name:		microcom
 Version:	1.02
-Release:	2
+Release:	4
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://microcom.port5.com/m102.tar.gz
 # Source0-md5:	c7817035dc41cb02e7cfb565cf9b7401
 URL:		http://microcom.port5.com/
+# use CC/CFLAGS/LDFLAGS variables instead of hardcoded gcc
+Patch0:		%{name}-make.patch
+Patch1:		%{name}-gcc14.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -24,9 +27,14 @@ wywodząca się z Linux Router Project.
 
 %prep
 %setup -q -c
+%patch -P0 -p1
+%patch -P1 -p1
 
 %build
-%{__make}
+%{__make} \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags}" \
+	LDFLAGS="%{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT

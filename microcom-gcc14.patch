@@ -1,0 +1,44 @@
+diff -urN microcom-orig/autodet.c microcom-fix/autodet.c
+--- microcom-orig/autodet.c	2000-07-30 06:15:47.000000000 +0200
++++ microcom-fix/autodet.c	2026-03-09 17:10:36.106696603 +0100
+@@ -73,7 +73,7 @@
+ 
+   if (i > 0) {
+     buf[i + 1] = '\0';
+-    printf(buf);
++    printf("%s", buf);
+     if (strstr(buf, "OK") != NULL) {
+       printf("Modem found on %s\n\n", device);
+       retval = 1;
+diff -urN microcom-orig/microcom.h microcom-fix/microcom.h
+--- microcom-orig/microcom.h	2000-07-30 06:15:52.000000000 +0200
++++ microcom-fix/microcom.h	2026-03-09 17:10:36.108333645 +0100
+@@ -48,6 +48,7 @@
+ int script_process(S_ORIGINATOR orig, char* buf, int size); /* script.c */
+ void script_init(char* s); /* script.c */
+ void mux_clear_sflag(void); /* mus.c */
++int autodetect(int port); /* autodet.c */
+ void cleanup_termios(int signal);
+ void init_stdin(struct termios *sts);
+ void init_comm(struct termios *pts);
+diff -urN microcom-orig/script.c microcom-fix/script.c
+--- microcom-orig/script.c	2000-07-30 06:15:47.000000000 +0200
++++ microcom-fix/script.c	2026-03-09 17:10:36.111753692 +0100
+@@ -347,7 +347,7 @@
+ /* KEYWORDS */
+ struct kw {
+   char *command;
+-  char* (*fn)();
++  char* (*fn)(char *);
+ } keywords[] = {
+   { "expect",	doexpect },
+   { "send",	dosend },
+@@ -367,7 +367,7 @@
+ //  { "sleep",	dosleep },
+ //  { "break",	dobreak },
+ //  { "call",	docall },
+-  { (char *)0,	(char*(*)())0 }
++  { (char *)0,	(char*(*)(char *))0 }
+ };
+  
+ /*
